@@ -7,13 +7,26 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/anchor_view"
+        android:id="@+id/anchor_for_balloon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hey! Click Here"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Clickable 'pop up under balloon'"
+        app:layout_constraintBottom_toTopOf="@+id/anchor_for_popup"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/anchor_for_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clickable 'pop up under pop up'"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/anchor_for_balloon" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
