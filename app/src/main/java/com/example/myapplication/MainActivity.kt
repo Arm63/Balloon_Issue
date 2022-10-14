@@ -46,7 +46,37 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        setBalloonFunctionality()
+
         setPopUpFunctionality()
+    }
+
+    private fun setBalloonFunctionality(){
+        val popupWindow = PopupWindow(bindingPopUpUnderBalloon.root, WRAP_CONTENT, WRAP_CONTENT).apply {
+            isFocusable = true
+            isOutsideTouchable = true
+            overlapAnchor = true
+        }
+
+        val childViewFromPopupWindow =
+            popupWindow.contentView.findViewById<TextView>(R.id.second_text)
+
+        childViewFromPopupWindow.addOnAttachStateChangeListener(object :
+            View.OnAttachStateChangeListener {
+            override fun onViewAttachedToWindow(v: View?) {
+                childViewFromPopupWindow.post {
+                    balloon.showAlignBottom(popupWindow.contentView)
+                }
+            }
+
+            override fun onViewDetachedFromWindow(v: View?) {}
+
+        })
+
+        binding.anchorForBalloon.setOnClickListener {
+            popupWindow.showAsDropDown(binding.anchorForBalloon, 0, 0)
+            popupWindow.contentView.setBackgroundColor(Color.GRAY)
+        }
     }
 
     private fun setPopUpFunctionality(){
